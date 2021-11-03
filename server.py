@@ -74,15 +74,12 @@ def flask_post_json():
 @app.route("/")
 def hello():
     '''Return something coherent here.. perhaps redirect to /static/index.html '''
-    return app.send_static_file('index.html')
+    return redirect("http://127.0.0.1:5000/static/index.html")
 
 @app.route("/entity/<entity>", methods=['POST','PUT'])
 def update(entity):
     '''update the entities via this interface'''
-    i = 0;
-    while i < len(flask_post_json()):
-        myWorld.update(entity, flask_post_json().keys()[i], flask_post_json().values()[i])
-        i += 1
+    myWorld.set(entity,flask_post_json())
     return json.dumps(myWorld.get(entity))
 
 @app.route("/world", methods=['POST','GET'])    
