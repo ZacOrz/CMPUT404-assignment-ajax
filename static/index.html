@@ -149,8 +149,7 @@ function addEntity(entity, data) {
     world[entity] = data;
     drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
-    var oneback = one_callback;
-    sendJSONXMLHTTPRequest("/entity/" + entity, data, oneback);
+    sendJSONXMLHTTPRequest("/entity/" + entity, data, one_callback);
 }
 
 var counter = 0;
@@ -281,8 +280,7 @@ function get_world_callback(return_world){
 
 function update() {
     //XXX: TODO Get the world from the webservice using a XMLHTTPRequest
-    var callback = get_world_callback;
-    sendJSONXMLHTTPRequest("/world", null, callback);
+    sendJSONXMLHTTPRequest("/world", null, get_world_callback);
 }
 
 
